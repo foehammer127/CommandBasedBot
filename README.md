@@ -14,3 +14,5 @@ can be made to run it on different systems.
 - Heavy use of Ftclib/GamepadEx
 - Bulk Read Hub to Speed Up Lynx Commands
 - Fast and Slow Modes, and Always Slowed Turning to make the robot more controllable
+
+Remember to tune the PID controller!
