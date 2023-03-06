@@ -1,13 +1,13 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.drivebase.MecanumDrive;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import javax.crypto.ExemptionMechanism;
-
+@Config
 public class DriveTrainSubsystem extends SubsystemBase {
     private Motor leftfront;
     private Motor leftback;
@@ -16,7 +16,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
     private MecanumDrive drive;
 
-
+    public static double TURN_MULTIPLIER = 0.5;
 
     public DriveTrainSubsystem(HardwareMap hardwareMap) {
         leftfront = new Motor(hardwareMap, "leftfront", Motor.GoBILDA.RPM_312);
@@ -33,7 +33,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
         drive.driveFieldCentric(
                 inputs.getLeftX(),
                 inputs.getLeftY(),
-                inputs.getRightX(),
+                inputs.getRightX() * TURN_MULTIPLIER,
                 imuHeading,
                 false
         );
@@ -43,7 +43,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
         drive.driveRobotCentric(
                 inputs.getLeftX(),
                 inputs.getLeftY(),
-                inputs.getRightX(),
+                inputs.getRightX() * TURN_MULTIPLIER,
                 false
         );
     }
