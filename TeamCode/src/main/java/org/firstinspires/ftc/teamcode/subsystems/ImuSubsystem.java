@@ -7,6 +7,8 @@ import com.qualcomm.robotcore.hardware.IMU;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
+import java.util.function.DoubleSupplier;
+
 public class ImuSubsystem extends SubsystemBase {
     private final IMU imu;
 
@@ -31,6 +33,14 @@ public class ImuSubsystem extends SubsystemBase {
 
     public double getDegrees() {
         return imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
+    }
+
+    public DoubleSupplier getAngleSupplierDegrees() {
+        return this::getDegrees;
+    }
+
+    public DoubleSupplier getAngleSupplierRadians() {
+        return this::getRadians;
     }
 
 }
