@@ -14,7 +14,7 @@ public class TurnToAngleCommand extends CommandBase {
 
     ImuSubsystem imu;
 
-    public static double P = 0;
+    public static double P = 1;
     public static double I = 0;
     public static double D = 0;
 
