@@ -18,7 +18,7 @@ public class TurnToAngleCommand extends CommandBase {
     public static double I = 0;
     public static double D = 0;
 
-    public static double TOLERANCE = 0.5;
+    public static double TOLERANCE = 0.01;
 
     public double target = 0;
 
@@ -34,9 +34,9 @@ public class TurnToAngleCommand extends CommandBase {
     }
 
     public void execute() {
-        double degreees = imu.getDegrees();
-        double output = controller.calculate(degreees, target);
-        driveTrainSubsystem.driveFieldCentricFromInputs(0, 0, output, degreees);
+        double radians = imu.getRadians();
+        double output = controller.calculate(radians, target);
+        driveTrainSubsystem.driveFieldCentricFromInputs(0, 0, output, radians);
     }
 
     public TurnToAngleCommand setTarget(double target) {

@@ -77,7 +77,7 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
                 .whileHeld(new TurnToAngleCommand(driveTrainSubsystem, imu));
 
         driver.getGamepadButton(GamepadKeys.Button.A)
-                .whileHeld(new TurnToAngleCommand(driveTrainSubsystem, imu).setTarget(180));
+                .whileHeld(new TurnToAngleCommand(driveTrainSubsystem, imu).setTarget(Math.toRadians(180)));
 
     }
 
