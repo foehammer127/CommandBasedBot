@@ -56,7 +56,7 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
         driver.getGamepadButton(GamepadKeys.Button.BACK)
                 .whenReleased(new InstantCommand(imu::reset, imu));
 
-        // Make Robot Drive Robot Centric
+        // Make Robot Drive Robot Centric While Right Bumper is Pressed
         driver.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER)
                 .whileHeld(new RobotCentricDriveCommand(driveTrainSubsystem, driver));
         // Slow Mode
