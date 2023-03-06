@@ -52,14 +52,11 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
 
 
     private void bindButtons() {
-        // Reset IMU when Back is Released (To Facilitate Recalibration)
+        // Reset IMU when Back is Released (To Facilitate Recalibration of the IMU)
         driver.getGamepadButton(GamepadKeys.Button.BACK)
                 .whenReleased(new InstantCommand(imu::reset, imu));
 
-        // Make Robot Drive Robot Centric While Right Bumper is Pressed
-        driver.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER)
-                .whileHeld(new RobotCentricDriveCommand(driveTrainSubsystem, driver));
-        // Slow Mode
+        // Slow Mode When Left Bumper Pressed
         driver.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)
                 .whenPressed(new InstantCommand(() -> {
                     driveTrainSubsystem.setMaxSpeed(0.2);
@@ -67,7 +64,7 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
                 .whenReleased(new InstantCommand(() -> {
                     driveTrainSubsystem.setDefaultSpeed();
                 }));
-        // Fast Mode
+        // Fast Mode When Right Bumper Pressed
         driver.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER)
                 .whenPressed(new InstantCommand(() -> {
                     driveTrainSubsystem.setMaxSpeed(1);
