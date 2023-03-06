@@ -13,4 +13,4 @@ can be made to run it on different systems.
 - Turn to Angle Buttons using the RevImu
 - Heavy use of Ftclib/GamepadEx
 - Bulk Read Hub to Speed Up Lynx Commands
-
+- Fast and Slow Modes, and Always Slowed Turning to make the robot more controllable
