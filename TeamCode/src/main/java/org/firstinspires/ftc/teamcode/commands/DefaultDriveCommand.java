@@ -4,24 +4,25 @@ import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 
 import org.firstinspires.ftc.teamcode.subsystems.DriveTrainSubsystem;
-import org.firstinspires.ftc.teamcode.subsystems.ImuSubsystem;
+
+import java.util.function.DoubleSupplier;
 
 public class DefaultDriveCommand extends CommandBase {
-    private final ImuSubsystem imuSubsystem;
+    private final DoubleSupplier angleSupplier;
     private final DriveTrainSubsystem driveTrainSubsystem;
 
     private final GamepadEx driverpad;
 
-    public DefaultDriveCommand(ImuSubsystem imuSubsystem, DriveTrainSubsystem driveTrainSubsystem, GamepadEx driverpad) {
+    public DefaultDriveCommand(DoubleSupplier imuAngleSupplier, DriveTrainSubsystem driveTrainSubsystem, GamepadEx driverpad) {
         this.driveTrainSubsystem = driveTrainSubsystem;
-        this.imuSubsystem = imuSubsystem;
+        this.angleSupplier = imuAngleSupplier;
         this.driverpad = driverpad;
 
         addRequirements(driveTrainSubsystem);
     }
 
     public void execute() {
-        driveTrainSubsystem.driveFieldCentric(driverpad, imuSubsystem.getDegrees());
+        driveTrainSubsystem.driveFieldCentric(driverpad, angleSupplier.getAsDouble());
     }
 
     public boolean isFinished() {

@@ -15,9 +15,11 @@ import org.firstinspires.ftc.teamcode.subsystems.DriveTrainSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.ImuSubsystem;
 
 import java.util.List;
+import java.util.function.DoubleSupplier;
 
 public class Robot extends com.arcrobotics.ftclib.command.Robot {
     private ImuSubsystem imu;
+    private DoubleSupplier imuAngleSupplierDegrees = imu.getAngleSupplierDegrees();
     private DriveTrainSubsystem driveTrainSubsystem;
 
     private GamepadEx driver;
@@ -39,7 +41,7 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
         register(imu);
 
         driveTrainSubsystem = new DriveTrainSubsystem(hardwareMap);
-        CommandScheduler.getInstance().setDefaultCommand(driveTrainSubsystem, new DefaultDriveCommand(imu, driveTrainSubsystem, driver));
+        CommandScheduler.getInstance().setDefaultCommand(driveTrainSubsystem, new DefaultDriveCommand(imuAngleSupplierDegrees, driveTrainSubsystem, driver));
 
 
     }
